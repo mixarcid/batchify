@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: batchify
+Version: 0.0.1
+Summary: batchify anything
+Home-page: https://github.com/mixarcid/batchify
+Author: Michael Arcidiacono
+Author-email: 
+License: UNKNOWN
+Description: ## TODO
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
