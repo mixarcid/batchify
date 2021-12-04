@@ -1,5 +1,11 @@
 from typing import TypeVar, Generic, Type, Any, Dict, List, Union
+
 import torch
+import torch.utils.data
+from torch.utils.data.dataloader import default_collate
+
+class Batchable:
+    pass
 
 T = TypeVar('T')
 
@@ -31,13 +37,7 @@ class Batch(Generic[T]):
         for key, val in template.__dict__.items():
             self.batch_subtypes[key] = type(val)
             attribs = [ getattr(item, key) for item in items ]
-            if isinstance(val, int) or \
-                 isinstance(val, float):
-                self.store[key] = torch.tensor(attribs)
-            elif isinstance(val, torch.Tensor):
-                self.store[key] = torch.stack(attribs, 0)
-            else:
-                self.store[key] = Batch(attribs)
+            self.store[key] = collate(attribs)
 
     def init_from_type(self, batch_type: Type, **kwargs):
         self.batch_type = batch_type
@@ -75,5 +75,18 @@ class Batch(Generic[T]):
                 item = item_type(item)
             setattr(ret, key, item)
         return ret
-                
             
+def collate(batch: Any) -> Any:
+    example = batch[0]
+    if isinstance(example, Batchable):
+        return Batch(batch)
+    else:
+        return default_collate(batch)
+
+class DataLoader(torch.utils.data.DataLoader):
+    
+    def __init__(self, dataset, batch_size=1, shuffle=False, **kwargs):
+        super(DataLoader, self).__init__(
+            dataset, batch_size, shuffle,
+            collate_fn=collate, **kwargs
+        )
