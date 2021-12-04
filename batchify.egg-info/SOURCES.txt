@@ -1,9 +1,0 @@
-README.md
-setup.py
-batchify/__init__.py
-batchify/batchify.py
-batchify/test.py
-batchify.egg-info/PKG-INFO
-batchify.egg-info/SOURCES.txt
-batchify.egg-info/dependency_links.txt
-batchify.egg-info/top_level.txt
