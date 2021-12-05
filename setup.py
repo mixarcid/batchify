@@ -2,10 +2,10 @@ import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
+    
 setuptools.setup(
     name="batchify",
-    version="0.0.1",
+    version="0.0.3",
     author="Michael Arcidiacono",
     author_email="",
     description="batchify anything",
@@ -18,4 +18,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    install_requires=['torch>=1.6.0']
 )
