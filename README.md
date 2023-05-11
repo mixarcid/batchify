@@ -1,5 +1,7 @@
 # batchify: structured data in pytorch
 
+### Note: all the batchify functionality has been incorperated into [Terrace](https://github.com/mixarcid/terrace). Please use Terrace instead; development on this repo has stopped. 
+
 PyTorch can already batchify tensors (and tuples of tensors), but what about arbitrary classes? If your neural network is dealing with complex datatypes, structuring your data in classes is the solution. With batchify, you can seemlessly return classes in a pytorch dataset.
 
 As an example, let's say you want your neural network do something with people. People, as we all know, are faces and names
